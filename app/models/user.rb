@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username
+
+  has_many :friendships, dependent: :destroy
+  has_many :inverse_frienships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
+
 end
